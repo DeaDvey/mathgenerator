@@ -134,4 +134,5 @@ gen_list = [
     ("velocity_of_object", "misc"),
     ("binary_addition", "computer_science"),
     ("kinetic_energy", "physics"),
+    ("potential_dividers", "physics"),
 ]

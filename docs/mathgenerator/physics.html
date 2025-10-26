@@ -55,6 +55,9 @@
             <li>
                     <a class="function" href="#kinetic_energy">kinetic_energy</a>
             </li>
+            <li>
+                    <a class="function" href="#potential_dividers">potential_dividers</a>
+            </li>
     </ul>
 
 
@@ -94,6 +97,30 @@
 </span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>   <span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;What is the kinetic energy of an object of mass $</span><span class="si">{</span><span class="n">mass</span><span class="si">}</span><span class="s2"> kg$ and velocity $</span><span class="si">{</span><span class="n">velocity</span><span class="si">}</span><span class="s2"> m/s$?&quot;</span>
 </span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>   <span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">kinetic_energy</span><span class="si">}</span><span class="s1"> J$&#39;</span>
 </span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>   <span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="n">solution</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="k">def</span><span class="w"> </span><span class="nf">potential_dividers</span><span class="p">(</span><span class="n">max_vin</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_resistance</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="w">   </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Potential Divider question using Vout = (Vin * R2) / (R2 + R1)</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="sd">    | Ex. Problem | Ex. Solution |</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="sd">    | --- | --- |</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="sd">    | In a Potential Divider, if resistors R1 and R2 have resistances of $100 Ω$ and $50 Ω$ respectively, and the cell has $12 V$ What is the output potential difference across R2? | $4 V$ |</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a><span class="w">   </span><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a><span class="sd">    This is what a potential divider circuit looks like:</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a><span class="sd">    ------</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a><span class="sd">    |    R1</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a><span class="sd"> Vi =    |----o</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a><span class="sd">    |    R2      Vout</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a><span class="sd">    |____|____o</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>   <span class="n">vin</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_vin</span><span class="p">)</span>          <span class="c1"># Voltage input of cell</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>   <span class="n">r1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_resistance</span><span class="p">)</span>    <span class="c1"># Resistance of R1</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>   <span class="n">r2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_resistance</span><span class="p">)</span>    <span class="c1"># Resistance of R2</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>   <span class="n">vout</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">vin</span> <span class="o">*</span> <span class="n">r2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>    <span class="c1"># Voltage output across R2</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>
+</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>   <span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;In a Potential Divider, if resistors R1 and R2 have resistances of $</span><span class="si">{</span><span class="n">r1</span><span class="si">}</span><span class="s2"> Ω$ and $</span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s2"> Ω$ respectively, and the cell has $</span><span class="si">{</span><span class="n">vin</span><span class="si">}</span><span class="s2"> V$ What is the output potential difference across R2?&quot;</span>
+</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>   <span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">vout</span><span class="si">}</span><span class="s2"> V$&quot;</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>   <span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="n">solution</span>
 </span></pre></div>
 
 
@@ -140,6 +167,63 @@
 <tr>
   <td>What is the kinetic energy of an object of mass $5 kg$ and velocity $10 m/s$</td>
   <td>$250 J$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+                </section>
+                <section id="potential_dividers">
+                            <input id="potential_dividers-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">potential_dividers</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">max_vin</span><span class="o">=</span><span class="mi">50</span>, </span><span class="param"><span class="n">max_resistance</span><span class="o">=</span><span class="mi">500</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="potential_dividers-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#potential_dividers"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="potential_dividers-21"><a href="#potential_dividers-21"><span class="linenos">21</span></a><span class="k">def</span><span class="w"> </span><span class="nf">potential_dividers</span><span class="p">(</span><span class="n">max_vin</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">max_resistance</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+</span><span id="potential_dividers-22"><a href="#potential_dividers-22"><span class="linenos">22</span></a><span class="w">   </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Potential Divider question using Vout = (Vin * R2) / (R2 + R1)</span>
+</span><span id="potential_dividers-23"><a href="#potential_dividers-23"><span class="linenos">23</span></a>
+</span><span id="potential_dividers-24"><a href="#potential_dividers-24"><span class="linenos">24</span></a><span class="sd">    | Ex. Problem | Ex. Solution |</span>
+</span><span id="potential_dividers-25"><a href="#potential_dividers-25"><span class="linenos">25</span></a><span class="sd">    | --- | --- |</span>
+</span><span id="potential_dividers-26"><a href="#potential_dividers-26"><span class="linenos">26</span></a><span class="sd">    | In a Potential Divider, if resistors R1 and R2 have resistances of $100 Ω$ and $50 Ω$ respectively, and the cell has $12 V$ What is the output potential difference across R2? | $4 V$ |</span>
+</span><span id="potential_dividers-27"><a href="#potential_dividers-27"><span class="linenos">27</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="potential_dividers-28"><a href="#potential_dividers-28"><span class="linenos">28</span></a><span class="w">   </span><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="potential_dividers-29"><a href="#potential_dividers-29"><span class="linenos">29</span></a><span class="sd">    This is what a potential divider circuit looks like:</span>
+</span><span id="potential_dividers-30"><a href="#potential_dividers-30"><span class="linenos">30</span></a><span class="sd">    ------</span>
+</span><span id="potential_dividers-31"><a href="#potential_dividers-31"><span class="linenos">31</span></a><span class="sd">    |    R1</span>
+</span><span id="potential_dividers-32"><a href="#potential_dividers-32"><span class="linenos">32</span></a><span class="sd"> Vi =    |----o</span>
+</span><span id="potential_dividers-33"><a href="#potential_dividers-33"><span class="linenos">33</span></a><span class="sd">    |    R2      Vout</span>
+</span><span id="potential_dividers-34"><a href="#potential_dividers-34"><span class="linenos">34</span></a><span class="sd">    |____|____o</span>
+</span><span id="potential_dividers-35"><a href="#potential_dividers-35"><span class="linenos">35</span></a><span class="sd">    &#39;&#39;&#39;</span>
+</span><span id="potential_dividers-36"><a href="#potential_dividers-36"><span class="linenos">36</span></a>   <span class="n">vin</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_vin</span><span class="p">)</span>          <span class="c1"># Voltage input of cell</span>
+</span><span id="potential_dividers-37"><a href="#potential_dividers-37"><span class="linenos">37</span></a>   <span class="n">r1</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_resistance</span><span class="p">)</span>    <span class="c1"># Resistance of R1</span>
+</span><span id="potential_dividers-38"><a href="#potential_dividers-38"><span class="linenos">38</span></a>   <span class="n">r2</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_resistance</span><span class="p">)</span>    <span class="c1"># Resistance of R2</span>
+</span><span id="potential_dividers-39"><a href="#potential_dividers-39"><span class="linenos">39</span></a>   <span class="n">vout</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">vin</span> <span class="o">*</span> <span class="n">r2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">r1</span> <span class="o">+</span> <span class="n">r2</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>    <span class="c1"># Voltage output across R2</span>
+</span><span id="potential_dividers-40"><a href="#potential_dividers-40"><span class="linenos">40</span></a>
+</span><span id="potential_dividers-41"><a href="#potential_dividers-41"><span class="linenos">41</span></a>   <span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;In a Potential Divider, if resistors R1 and R2 have resistances of $</span><span class="si">{</span><span class="n">r1</span><span class="si">}</span><span class="s2"> Ω$ and $</span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s2"> Ω$ respectively, and the cell has $</span><span class="si">{</span><span class="n">vin</span><span class="si">}</span><span class="s2"> V$ What is the output potential difference across R2?&quot;</span>
+</span><span id="potential_dividers-42"><a href="#potential_dividers-42"><span class="linenos">42</span></a>   <span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">vout</span><span class="si">}</span><span class="s2"> V$&quot;</span>
+</span><span id="potential_dividers-43"><a href="#potential_dividers-43"><span class="linenos">43</span></a>   <span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="n">solution</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Potential Divider question using Vout = (Vin * R2) / (R2 + R1)</p>
+
+<table>
+<thead>
+<tr>
+  <th>Ex. Problem</th>
+  <th>Ex. Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>In a Potential Divider, if resistors R1 and R2 have resistances of $100 Ω$ and $50 Ω$ respectively, and the cell has $12 V$ What is the output potential difference across R2?</td>
+  <td>$4 V$</td>
 </tr>
 </tbody>
 </table>
