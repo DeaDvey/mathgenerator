@@ -40,3 +40,26 @@ def potential_dividers(max_vin=50, max_resistance=500):
    problem = f"In a Potential Divider, if resistors R1 and R2 have resistances of ${r1} Ω$ and ${r2} Ω$ respectively, and the cell has ${vin} V$ What is the output potential difference across R2?"
    solution = f"${vout} V$"
    return problem, solution
+
+def resistivity(max_diameter_mm=5, max_length_cm=100, max_resistance=0.1):
+   r"""Calculate the Resistivity using the equation R = (pL)/A, where R = Resistance, L = length of wire, p = resistivity and A = cross sectional area of wire
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | A wire has resistance $17 mΩ$ when it is $43 cm$ long with a diameter of $1.33 mm$. Calculate the resistivity of the wire |
+    """
+   # This question requires a lot of unit conversions and calculating the area of a circle from diameter
+   diameter_mm = round(random.uniform(0, max_diameter_mm),2)   # Random diameter in mm
+   cross_sectional_area = math.pi * (diameter_mm / 2000)**2    # Calculate the cross sectional area using pi r²
+   length_cm = round(random.uniform(0, max_length_cm),2)       # Random wire length in cm
+   resistance = round(random.uniform(0, max_resistance),2)     # Random reistance in ohms
+
+   resistivity = (resistance * cross_sectional_area) / (length_cm / 100)
+
+   problem = f"A wire has resistance ${resistance*1000} mΩ$ when it is ${length_cm} cm$ long with a diameter of ${diameter_mm} mm$. Calculate the resistivity of the wire"
+   solution = f"${resistivity:.2e} Ωm$"
+
+   return problem, solution
+
+
+

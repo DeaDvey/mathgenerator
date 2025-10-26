@@ -135,4 +135,5 @@ gen_list = [
     ("binary_addition", "computer_science"),
     ("kinetic_energy", "physics"),
     ("potential_dividers", "physics"),
+    ("resistivity", "physics"),
 ]
