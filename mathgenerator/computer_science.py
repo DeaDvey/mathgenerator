@@ -1,6 +1,22 @@
 import random
 import math
 
+def binary_addition(max_sum=256, max_addend=128):
+    r"""Binary Addition
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | In binary, calculate: $101 + 110110 = $ | $111011$ |
+    """
+    if max_addend > max_sum:
+        max_addend = max_sum
+    a = random.randint(0, max_addend)
+    b = random.randint(0, min((max_sum - a), max_addend))
+    c = a + b
+
+    problem = f"In base 2, ${bin(a).replace('0b', "")} + {bin(b).replace('0b', "")} =$ "
+    solution = f'${bin(c).replace('0b', "")}$'
+    return problem, solution
 
 def bcd_to_decimal(max_number=10000):
     r"""Binary Coded Decimal to Integer

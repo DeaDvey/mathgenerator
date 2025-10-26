@@ -8,6 +8,7 @@ from .calculus import *
 from .computer_science import *
 from .geometry import *
 from .misc import *
+from .physics import *
 from .statistics import *
 
 from ._gen_list import gen_list

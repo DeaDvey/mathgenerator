@@ -1,7 +1,6 @@
 # mathgenerator
-
-> [!WARNING]
-> I (lukew3), am no longer interested in maintaining this project. If you have a use case for this project and have the abilities to grow it and ensure/improve it's quality, email me at lukew25073@gmail.com and I will consider adding you as a maintainer. Thanks!
+Fork of <https://github.com/lukew3/mathgenerator><br/>
+Adding more Physics and Computer Science questions<br/>
 
 A math problem generator, created for the purpose of giving teachers and students the means to easily get access to random math exercises to suit their needs.
 
