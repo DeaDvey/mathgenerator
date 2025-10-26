@@ -136,4 +136,5 @@ gen_list = [
     ("kinetic_energy", "physics"),
     ("potential_dividers", "physics"),
     ("resistivity", "physics"),
+    ("fringe_spacing", "physics"),
 ]
