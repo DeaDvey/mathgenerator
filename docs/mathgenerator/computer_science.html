@@ -97,6 +97,9 @@
             <li>
                     <a class="function" href="#tribonacci_series">tribonacci_series</a>
             </li>
+            <li>
+                    <a class="function" href="#lba_to_chs">lba_to_chs</a>
+            </li>
     </ul>
 
 
@@ -406,6 +409,23 @@
 </span><span id="L-286"><a href="#L-286"><span class="linenos">286</span></a>    <span class="n">problem</span> <span class="o">=</span> <span class="s2">&quot;The Tribonacci Series of the first $</span><span class="si">{n}</span><span class="s2">$ numbers is ?&quot;</span>
 </span><span id="L-287"><a href="#L-287"><span class="linenos">287</span></a>    <span class="n">solution</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">tribSeries</span><span class="p">))</span>
 </span><span id="L-288"><a href="#L-288"><span class="linenos">288</span></a>    <span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;$</span><span class="si">{</span><span class="n">solution</span><span class="si">}</span><span class="s1">$&#39;</span>
+</span><span id="L-289"><a href="#L-289"><span class="linenos">289</span></a>
+</span><span id="L-290"><a href="#L-290"><span class="linenos">290</span></a><span class="k">def</span><span class="w"> </span><span class="nf">lba_to_chs</span><span class="p">(</span><span class="n">max_lba</span><span class="o">=</span><span class="mi">2880</span><span class="p">,</span> <span class="n">sectors_per_track</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">number_of_heads</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+</span><span id="L-291"><a href="#L-291"><span class="linenos">291</span></a><span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot; Calculating the Cylinder, Head and Sector numbers for a given LBA</span>
+</span><span id="L-292"><a href="#L-292"><span class="linenos">292</span></a><span class="sd">    | Ex. Problem | Ex. Solution |</span>
+</span><span id="L-293"><a href="#L-293"><span class="linenos">293</span></a><span class="sd">    | --- | --- |</span>
+</span><span id="L-294"><a href="#L-294"><span class="linenos">294</span></a><span class="sd">    | If the LBA of a block is $2243$ on a device with $18$ sectors per track and $2$ heads, what are the cylinder, head and sector numbers? | Cylinder: $62$, Head: $0$, Sector: $12$ |</span>
+</span><span id="L-295"><a href="#L-295"><span class="linenos">295</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-296"><a href="#L-296"><span class="linenos">296</span></a>    <span class="n">lba</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_lba</span><span class="p">)</span>
+</span><span id="L-297"><a href="#L-297"><span class="linenos">297</span></a>    <span class="n">cylinder</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">lba</span><span class="o">/</span><span class="p">(</span><span class="n">sectors_per_track</span><span class="o">*</span><span class="n">number_of_heads</span><span class="p">));</span>
+</span><span id="L-298"><a href="#L-298"><span class="linenos">298</span></a>    <span class="n">t</span> <span class="o">=</span> <span class="n">cylinder</span><span class="o">*</span><span class="p">(</span><span class="n">sectors_per_track</span><span class="o">*</span><span class="n">number_of_heads</span><span class="p">);</span>
+</span><span id="L-299"><a href="#L-299"><span class="linenos">299</span></a>    <span class="n">t</span> <span class="o">=</span> <span class="n">lba</span><span class="o">-</span><span class="n">t</span><span class="p">;</span>
+</span><span id="L-300"><a href="#L-300"><span class="linenos">300</span></a>    <span class="n">head</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="p">(</span><span class="n">sectors_per_track</span><span class="p">));</span>
+</span><span id="L-301"><a href="#L-301"><span class="linenos">301</span></a>    <span class="n">sector</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="n">head</span> <span class="o">*</span> <span class="n">lba</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span id="L-302"><a href="#L-302"><span class="linenos">302</span></a>
+</span><span id="L-303"><a href="#L-303"><span class="linenos">303</span></a>    <span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;If the LBA of a block is $</span><span class="si">{</span><span class="n">lba</span><span class="si">}</span><span class="s2">$ on a disk with $</span><span class="si">{</span><span class="n">sectors_per_track</span><span class="si">}</span><span class="s2">$ sectors per track and $</span><span class="si">{</span><span class="n">number_of_heads</span><span class="si">}</span><span class="s2">$ heads, what are the cylinder, head and sector numbers?&quot;</span>
+</span><span id="L-304"><a href="#L-304"><span class="linenos">304</span></a>    <span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Cylinder: $</span><span class="si">{</span><span class="n">cylinder</span><span class="si">}</span><span class="s2">$, Head: $</span><span class="si">{</span><span class="n">head</span><span class="si">}</span><span class="s2">$, Sector: $</span><span class="si">{</span><span class="n">sector</span><span class="si">}</span><span class="s2">$&quot;</span>
+</span><span id="L-305"><a href="#L-305"><span class="linenos">305</span></a>    <span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="n">solution</span>
 </span></pre></div>
 
 
@@ -1171,6 +1191,56 @@
 <tr>
   <td>The Tribonacci Series of the first $8$ numbers is ?</td>
   <td>$0, 0, 1, 1, 2, 4, 7, 13$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+                </section>
+                <section id="lba_to_chs">
+                            <input id="lba_to_chs-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">lba_to_chs</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">max_lba</span><span class="o">=</span><span class="mi">2880</span>, </span><span class="param"><span class="n">sectors_per_track</span><span class="o">=</span><span class="mi">18</span>, </span><span class="param"><span class="n">number_of_heads</span><span class="o">=</span><span class="mi">2</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="lba_to_chs-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#lba_to_chs"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="lba_to_chs-291"><a href="#lba_to_chs-291"><span class="linenos">291</span></a><span class="k">def</span><span class="w"> </span><span class="nf">lba_to_chs</span><span class="p">(</span><span class="n">max_lba</span><span class="o">=</span><span class="mi">2880</span><span class="p">,</span> <span class="n">sectors_per_track</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">number_of_heads</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+</span><span id="lba_to_chs-292"><a href="#lba_to_chs-292"><span class="linenos">292</span></a><span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot; Calculating the Cylinder, Head and Sector numbers for a given LBA</span>
+</span><span id="lba_to_chs-293"><a href="#lba_to_chs-293"><span class="linenos">293</span></a><span class="sd">    | Ex. Problem | Ex. Solution |</span>
+</span><span id="lba_to_chs-294"><a href="#lba_to_chs-294"><span class="linenos">294</span></a><span class="sd">    | --- | --- |</span>
+</span><span id="lba_to_chs-295"><a href="#lba_to_chs-295"><span class="linenos">295</span></a><span class="sd">    | If the LBA of a block is $2243$ on a device with $18$ sectors per track and $2$ heads, what are the cylinder, head and sector numbers? | Cylinder: $62$, Head: $0$, Sector: $12$ |</span>
+</span><span id="lba_to_chs-296"><a href="#lba_to_chs-296"><span class="linenos">296</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="lba_to_chs-297"><a href="#lba_to_chs-297"><span class="linenos">297</span></a>    <span class="n">lba</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_lba</span><span class="p">)</span>
+</span><span id="lba_to_chs-298"><a href="#lba_to_chs-298"><span class="linenos">298</span></a>    <span class="n">cylinder</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">lba</span><span class="o">/</span><span class="p">(</span><span class="n">sectors_per_track</span><span class="o">*</span><span class="n">number_of_heads</span><span class="p">));</span>
+</span><span id="lba_to_chs-299"><a href="#lba_to_chs-299"><span class="linenos">299</span></a>    <span class="n">t</span> <span class="o">=</span> <span class="n">cylinder</span><span class="o">*</span><span class="p">(</span><span class="n">sectors_per_track</span><span class="o">*</span><span class="n">number_of_heads</span><span class="p">);</span>
+</span><span id="lba_to_chs-300"><a href="#lba_to_chs-300"><span class="linenos">300</span></a>    <span class="n">t</span> <span class="o">=</span> <span class="n">lba</span><span class="o">-</span><span class="n">t</span><span class="p">;</span>
+</span><span id="lba_to_chs-301"><a href="#lba_to_chs-301"><span class="linenos">301</span></a>    <span class="n">head</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="p">(</span><span class="n">sectors_per_track</span><span class="p">));</span>
+</span><span id="lba_to_chs-302"><a href="#lba_to_chs-302"><span class="linenos">302</span></a>    <span class="n">sector</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-</span> <span class="p">(</span><span class="n">head</span> <span class="o">*</span> <span class="n">lba</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span id="lba_to_chs-303"><a href="#lba_to_chs-303"><span class="linenos">303</span></a>
+</span><span id="lba_to_chs-304"><a href="#lba_to_chs-304"><span class="linenos">304</span></a>    <span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;If the LBA of a block is $</span><span class="si">{</span><span class="n">lba</span><span class="si">}</span><span class="s2">$ on a disk with $</span><span class="si">{</span><span class="n">sectors_per_track</span><span class="si">}</span><span class="s2">$ sectors per track and $</span><span class="si">{</span><span class="n">number_of_heads</span><span class="si">}</span><span class="s2">$ heads, what are the cylinder, head and sector numbers?&quot;</span>
+</span><span id="lba_to_chs-305"><a href="#lba_to_chs-305"><span class="linenos">305</span></a>    <span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Cylinder: $</span><span class="si">{</span><span class="n">cylinder</span><span class="si">}</span><span class="s2">$, Head: $</span><span class="si">{</span><span class="n">head</span><span class="si">}</span><span class="s2">$, Sector: $</span><span class="si">{</span><span class="n">sector</span><span class="si">}</span><span class="s2">$&quot;</span>
+</span><span id="lba_to_chs-306"><a href="#lba_to_chs-306"><span class="linenos">306</span></a>    <span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="n">solution</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Calculating the Cylinder, Head and Sector numbers for a given LBA</p>
+
+<table>
+<thead>
+<tr>
+  <th>Ex. Problem</th>
+  <th>Ex. Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>If the LBA of a block is $2243$ on a device with $18$ sectors per track and $2$ heads, what are the cylinder, head and sector numbers?</td>
+  <td>Cylinder: $62$, Head: $0$, Sector: $12$</td>
 </tr>
 </tbody>
 </table>

@@ -286,3 +286,20 @@ def tribonacci_series(min_length=1, max_length=80):
     problem = "The Tribonacci Series of the first ${n}$ numbers is ?"
     solution = ', '.join(map(str, tribSeries))
     return problem, f'${solution}$'
+
+def lba_to_chs(max_lba=2880, sectors_per_track=18, number_of_heads=2):
+    r""" Calculating the Cylinder, Head and Sector numbers for a given LBA
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | If the LBA of a block is $2243$ on a device with $18$ sectors per track and $2$ heads, what are the cylinder, head and sector numbers? | Cylinder: $62$, Head: $0$, Sector: $12$ |
+    """
+    lba = random.randint(0, max_lba)
+    cylinder = math.floor(lba/(sectors_per_track*number_of_heads));
+    t = cylinder*(sectors_per_track*number_of_heads);
+    t = lba-t;
+    head = math.floor(t/(sectors_per_track));
+    sector = t - (head * lba) + 1;
+
+    problem = f"If the LBA of a block is ${lba}$ on a disk with ${sectors_per_track}$ sectors per track and ${number_of_heads}$ heads, what are the cylinder, head and sector numbers?"
+    solution = f"Cylinder: ${cylinder}$, Head: ${head}$, Sector: ${sector}$"
+    return problem, solution

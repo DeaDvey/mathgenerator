@@ -137,4 +137,5 @@ gen_list = [
     ("potential_dividers", "physics"),
     ("resistivity", "physics"),
     ("fringe_spacing", "physics"),
+    ("lba_to_chs", "computer_science"),
 ]
