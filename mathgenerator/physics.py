@@ -46,7 +46,7 @@ def resistivity(max_diameter_mm=5, max_length_cm=100, max_resistance=0.1):
 
     | Ex. Problem | Ex. Solution |
     | --- | --- |
-    | A wire has resistance $17 mΩ$ when it is $43 cm$ long with a diameter of $1.33 mm$. Calculate the resistivity of the wire |
+    | A wire has resistance $30 mΩ$ when it is $83.64 cm$ long with a diameter of $4.67 mm$. Calculate the resistivity of the wire | $6.14e-07 Ωm$ |
     """
    # This question requires a lot of unit conversions and calculating the area of a circle from diameter
    diameter_mm = round(random.uniform(0, max_diameter_mm),2)   # Random diameter in mm

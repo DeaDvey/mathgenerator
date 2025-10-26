@@ -58,6 +58,9 @@
             <li>
                     <a class="function" href="#potential_dividers">potential_dividers</a>
             </li>
+            <li>
+                    <a class="function" href="#resistivity">resistivity</a>
+            </li>
     </ul>
 
 
@@ -121,6 +124,26 @@
 </span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>   <span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;In a Potential Divider, if resistors R1 and R2 have resistances of $</span><span class="si">{</span><span class="n">r1</span><span class="si">}</span><span class="s2"> Ω$ and $</span><span class="si">{</span><span class="n">r2</span><span class="si">}</span><span class="s2"> Ω$ respectively, and the cell has $</span><span class="si">{</span><span class="n">vin</span><span class="si">}</span><span class="s2"> V$ What is the output potential difference across R2?&quot;</span>
 </span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>   <span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">vout</span><span class="si">}</span><span class="s2"> V$&quot;</span>
 </span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>   <span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="n">solution</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a>
+</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a><span class="k">def</span><span class="w"> </span><span class="nf">resistivity</span><span class="p">(</span><span class="n">max_diameter_mm</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_length_cm</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_resistance</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a><span class="w">   </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the Resistivity using the equation R = (pL)/A, where R = Resistance, L = length of wire, p = resistivity and A = cross sectional area of wire</span>
+</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a>
+</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a><span class="sd">    | Ex. Problem | Ex. Solution |</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a><span class="sd">    | --- | --- |</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a><span class="sd">    | A wire has resistance $30 mΩ$ when it is $83.64 cm$ long with a diameter of $4.67 mm$. Calculate the resistivity of the wire | $6.14e-07 Ωm$ |</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>   <span class="c1"># This question requires a lot of unit conversions and calculating the area of a circle from diameter</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>   <span class="n">diameter_mm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_diameter_mm</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>   <span class="c1"># Random diameter in mm</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>   <span class="n">cross_sectional_area</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">diameter_mm</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>    <span class="c1"># Calculate the cross sectional area using pi r²</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a>   <span class="n">length_cm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_length_cm</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>       <span class="c1"># Random wire length in cm</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a>   <span class="n">resistance</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_resistance</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>     <span class="c1"># Random reistance in ohms</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>
+</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>   <span class="n">resistivity</span> <span class="o">=</span> <span class="p">(</span><span class="n">resistance</span> <span class="o">*</span> <span class="n">cross_sectional_area</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">length_cm</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>
+</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a>   <span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;A wire has resistance $</span><span class="si">{</span><span class="n">resistance</span><span class="o">*</span><span class="mi">1000</span><span class="si">}</span><span class="s2"> mΩ$ when it is $</span><span class="si">{</span><span class="n">length_cm</span><span class="si">}</span><span class="s2"> cm$ long with a diameter of $</span><span class="si">{</span><span class="n">diameter_mm</span><span class="si">}</span><span class="s2"> mm$. Calculate the resistivity of the wire&quot;</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>   <span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">resistivity</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> Ωm$&quot;</span>
+</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>
+</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>   <span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="n">solution</span>
 </span></pre></div>
 
 
@@ -224,6 +247,59 @@
 <tr>
   <td>In a Potential Divider, if resistors R1 and R2 have resistances of $100 Ω$ and $50 Ω$ respectively, and the cell has $12 V$ What is the output potential difference across R2?</td>
   <td>$4 V$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+                </section>
+                <section id="resistivity">
+                            <input id="resistivity-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">resistivity</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">max_diameter_mm</span><span class="o">=</span><span class="mi">5</span>, </span><span class="param"><span class="n">max_length_cm</span><span class="o">=</span><span class="mi">100</span>, </span><span class="param"><span class="n">max_resistance</span><span class="o">=</span><span class="mf">0.1</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="resistivity-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#resistivity"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="resistivity-45"><a href="#resistivity-45"><span class="linenos">45</span></a><span class="k">def</span><span class="w"> </span><span class="nf">resistivity</span><span class="p">(</span><span class="n">max_diameter_mm</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_length_cm</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_resistance</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+</span><span id="resistivity-46"><a href="#resistivity-46"><span class="linenos">46</span></a><span class="w">   </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Calculate the Resistivity using the equation R = (pL)/A, where R = Resistance, L = length of wire, p = resistivity and A = cross sectional area of wire</span>
+</span><span id="resistivity-47"><a href="#resistivity-47"><span class="linenos">47</span></a>
+</span><span id="resistivity-48"><a href="#resistivity-48"><span class="linenos">48</span></a><span class="sd">    | Ex. Problem | Ex. Solution |</span>
+</span><span id="resistivity-49"><a href="#resistivity-49"><span class="linenos">49</span></a><span class="sd">    | --- | --- |</span>
+</span><span id="resistivity-50"><a href="#resistivity-50"><span class="linenos">50</span></a><span class="sd">    | A wire has resistance $30 mΩ$ when it is $83.64 cm$ long with a diameter of $4.67 mm$. Calculate the resistivity of the wire | $6.14e-07 Ωm$ |</span>
+</span><span id="resistivity-51"><a href="#resistivity-51"><span class="linenos">51</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="resistivity-52"><a href="#resistivity-52"><span class="linenos">52</span></a>   <span class="c1"># This question requires a lot of unit conversions and calculating the area of a circle from diameter</span>
+</span><span id="resistivity-53"><a href="#resistivity-53"><span class="linenos">53</span></a>   <span class="n">diameter_mm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_diameter_mm</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>   <span class="c1"># Random diameter in mm</span>
+</span><span id="resistivity-54"><a href="#resistivity-54"><span class="linenos">54</span></a>   <span class="n">cross_sectional_area</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">diameter_mm</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>    <span class="c1"># Calculate the cross sectional area using pi r²</span>
+</span><span id="resistivity-55"><a href="#resistivity-55"><span class="linenos">55</span></a>   <span class="n">length_cm</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_length_cm</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>       <span class="c1"># Random wire length in cm</span>
+</span><span id="resistivity-56"><a href="#resistivity-56"><span class="linenos">56</span></a>   <span class="n">resistance</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_resistance</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>     <span class="c1"># Random reistance in ohms</span>
+</span><span id="resistivity-57"><a href="#resistivity-57"><span class="linenos">57</span></a>
+</span><span id="resistivity-58"><a href="#resistivity-58"><span class="linenos">58</span></a>   <span class="n">resistivity</span> <span class="o">=</span> <span class="p">(</span><span class="n">resistance</span> <span class="o">*</span> <span class="n">cross_sectional_area</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">length_cm</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
+</span><span id="resistivity-59"><a href="#resistivity-59"><span class="linenos">59</span></a>
+</span><span id="resistivity-60"><a href="#resistivity-60"><span class="linenos">60</span></a>   <span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;A wire has resistance $</span><span class="si">{</span><span class="n">resistance</span><span class="o">*</span><span class="mi">1000</span><span class="si">}</span><span class="s2"> mΩ$ when it is $</span><span class="si">{</span><span class="n">length_cm</span><span class="si">}</span><span class="s2"> cm$ long with a diameter of $</span><span class="si">{</span><span class="n">diameter_mm</span><span class="si">}</span><span class="s2"> mm$. Calculate the resistivity of the wire&quot;</span>
+</span><span id="resistivity-61"><a href="#resistivity-61"><span class="linenos">61</span></a>   <span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">resistivity</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2"> Ωm$&quot;</span>
+</span><span id="resistivity-62"><a href="#resistivity-62"><span class="linenos">62</span></a>
+</span><span id="resistivity-63"><a href="#resistivity-63"><span class="linenos">63</span></a>   <span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="n">solution</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Calculate the Resistivity using the equation R = (pL)/A, where R = Resistance, L = length of wire, p = resistivity and A = cross sectional area of wire</p>
+
+<table>
+<thead>
+<tr>
+  <th>Ex. Problem</th>
+  <th>Ex. Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>A wire has resistance $30 mΩ$ when it is $83.64 cm$ long with a diameter of $4.67 mm$. Calculate the resistivity of the wire</td>
+  <td>$6.14e-07 Ωm$</td>
 </tr>
 </tbody>
 </table>
