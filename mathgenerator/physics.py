@@ -1,7 +1,7 @@
 import random
 import math
 
-# Generic
+# Mechanics
 def kinetic_energy(max_mass=1000, max_vel=100):
    r"""Kinetic Energy calculation using Ek = 0.5 * m * v^2
 
@@ -19,7 +19,7 @@ def kinetic_energy(max_mass=1000, max_vel=100):
    return problem, solution
 
 
-# Electricity
+# Electricity & Electric Fields
 def potential_dividers(max_vin=50, max_resistance=500):
    r"""Potential Divider question using Vout = (Vin * R2) / (R2 + R1)
 
@@ -64,6 +64,46 @@ def resistivity(max_diameter_mm=5, max_length_cm=100, max_resistance=0.1):
 
    return problem, solution
 
+def electric_field_strength_two_points(max_seperation_cm=100, max_charge_uC=1000):
+    r"""Calculate the total electric field strength at point P with given points A and B, using the equation kQ/r²
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | Charges A and B and point P are arranged like this: B <-- 7 cm --> P <-- 79 cm --> A, Where A and B have charges of -56 µC and -410 µC, What is the electric field strength at point P? | $-751417824 NC^{-1}$ (to the right) |
+
+    """
+    a_charge = random.randint(-max_charge_uC,max_charge_uC)
+    b_charge = random.randint(-max_charge_uC,max_charge_uC)
+    arrangement = [['P'],['A',a_charge],['B',b_charge]] # Arrangement of charge A, B and the point of focus
+    random.shuffle(arrangement)
+    seperations = [random.randint(0,max_seperation_cm), random.randint(0,max_seperation_cm)]
+    total_efs = 0
+    # Work out how far A and B are from P (vector)
+    if arrangement[0][0] == 'P':
+        arrangement[1].append(seperations[0])
+        arrangement[2].append(seperations[0]+seperations[1])
+    elif arrangement[1][0] == 'P':
+        arrangement[0].append(-seperations[0])
+        arrangement[2].append(seperations[1])
+    else:
+        arrangement[0].append(-(seperations[0]+seperations[1]))
+        arrangement[1].append(-seperations[1])
+
+    # Work out the EFS at point P caused by A and B seperatley, then sum them together in `total_efs`
+    for point in arrangement:
+        if point[0] == 'P':
+            continue
+        else:
+            efs = ((8.99*10**9)*(point[1]*10**-6))/((point[2]/100)**2) # efs = kQ/r²
+            if point[2] > 0: efs = -efs
+            point.append(efs)
+            total_efs += efs
+
+    problem = f"Charges A and B and point P are arranged like this:\n{arrangement[0][0]} <-- ${seperations[0]}$ cm --> {arrangement[1][0]} <-- ${seperations[1]}$ cm --> {arrangement[2][0]}\nWhere A and B have charges of ${a_charge}$ µC and ${b_charge}$ µC\nWhat is the electric field strength at point P?"
+    solution = f"${round(total_efs)} NC^{-1}$ (to the right)"
+    return problem, solution
+
+
 # Waves
 def fringe_spacing(max_screen_distance=30, max_slit_spacing_mm=100):
    r"""Calculate the fringe spacing in a double slit experiment with w=(λD)/s
@@ -81,6 +121,24 @@ def fringe_spacing(max_screen_distance=30, max_slit_spacing_mm=100):
    solution = f"Using the equation $\\frac{{\\lambda D}}{{s}}$, we get a fringe spacing of ${fringe_spacing}m$"
    return problem, solution
 
+def diffraction_grating_wavelength(min_slits_per_mm=100, max_slits_per_mm=500, max_order_number=5):
+    r"""Calculate the wavelength when given the number of slits per mm, order number and angle of order using the equation nλ = dsinθ
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | A laser is shone through a diffraction grating which has $293$ lines per mm, the fringe of order number $2$ is at an angle of $0.39$ rad. Calculate the wavelength of the light | $\lambda = 6.487856913364529e-07m = 649nm |
+
+    """
+    slits_per_mm = random.randint(min_slits_per_mm, max_slits_per_mm)
+    slit_spacing = 1/(slits_per_mm * 1000)
+    order_number = random.randint(1, max_order_number)
+    angle_of_order = round(random.uniform(0.2, (math.pi/2)-0.2),2)
+    wavelength = ((slit_spacing * math.sin(angle_of_order)) / order_number)
+
+    problem = f"A laser is shone through a diffraction grating which has ${slits_per_mm}$ lines per mm, the fringe of order number ${order_number}$ is at an angle of ${angle_of_order}$ rad. Calculate the wavelength of the light"
+    solution = f"$\\lambda = {wavelength}m = {round(wavelength / 10**-9)}nm$"
+
+    return problem, solution
 
 
 

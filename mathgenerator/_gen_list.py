@@ -138,4 +138,6 @@ gen_list = [
     ("resistivity", "physics"),
     ("fringe_spacing", "physics"),
     ("lba_to_chs", "computer_science"),
+    ("floating_point_binary_to_decimal", "computer_science"),
+    ("electric_field_strength_two_points", "physics"),
 ]

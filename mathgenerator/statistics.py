@@ -1,6 +1,6 @@
 import random
 import math
-
+import scipy.stats as stats
 
 def combinations(max_lengthgth=20):
     """Combinations of Objects
@@ -178,3 +178,23 @@ def permutation(max_lengthgth=20):
 
     problem = f"Number of Permutations from ${a}$ objects picked ${b}$ at a time is: "
     return problem, f"${solution}$"
+
+# TODO
+#def normal_distribution_bounds(max_mean=100, max_variance=10): # max value for mean is absolute
+    """
+
+
+    """
+    # P(x1 <= X <= x2) = CDF(x2) − CDF(x1)
+
+    # X(x) = 1/2[1+erf(x−μ√2σ)]
+    mean = random.randint(-max_mean, max_mean)
+    variance = random.randint(1, max_variance)
+    bound_1 = random.randint(round(mean - (5 * math.sqrt(variance))), round(mean + (5 * math.sqrt(variance))))
+    bound_2 = random.randint(bound_1, round(mean + (5 * math.sqrt(variance))))
+    answer = stats.norm.cdf(bound_2, mean, variance) - stats.norm.cdf(bound_1, mean, variance)
+
+    problem = f"What is the area under the Normal Distribution $X~N({mean},{variance})$ between ${bound_1}$ and ${bound_2}$"
+    solution = f"${answer}$"
+    return problem, solution
+

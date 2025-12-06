@@ -1,6 +1,34 @@
 import random
 import math
 
+def floating_point_binary_to_decimal(mantissa_length=8, exponent_length=4):
+    r"""Floating Point Binary to Decimal
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | There is a floating point binary number $011100000010$ where the signed mantissa is 8 bits long and the signed exponent is 4 bits long | $011100000010 = 3.5$ |
+
+    """
+    # TODO Could do with some work ensuring the number is not too small or too big.
+    mantissa = ''
+    for x in range(mantissa_length):
+        mantissa += str(random.randint(0,1))
+    exponent = ''
+    for x in range(exponent_length):
+        exponent += str(random.randint(0,1))
+    decimal_mantissa = int(mantissa, 2)
+    if (decimal_mantissa & (1 << (mantissa_length - 1))) != 0:
+        decimal_mantissa = decimal_mantissa - (1 << mantissa_length)
+    decimal_exponent = int(exponent, 2)
+    if (decimal_exponent & (1 << (exponent_length - 1))) != 0:
+        decimal_exponent = decimal_exponent - (1 << exponent_length)
+    answer = decimal_mantissa * 2**(decimal_exponent - (mantissa_length - 1))
+
+    problem = f"There is a floating point binary number ${mantissa}{exponent}$ where the signed mantissa is {mantissa_length} bits long and the signed exponent is {exponent_length} bits long"
+    solution = f'${mantissa}{exponent} = {answer}$'
+
+    return problem, solution
+
 def binary_addition(max_sum=256, max_addend=128):
     r"""Binary Addition
 
