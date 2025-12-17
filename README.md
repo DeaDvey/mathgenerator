@@ -1,12 +1,13 @@
 # mathgenerator
 Fork of <https://github.com/lukew3/mathgenerator><br/>
 Adding more Physics and Computer Science questions<br/>
+As well as randomly generated questions<br/>
 
 A math problem generator, created for the purpose of giving teachers and students the means to easily get access to random math exercises to suit their needs.
 
 To try out generators, go to <https://mathgenerator-demo.netlify.app>
 
-See [CONTRIBUTING.md](https://github.com/lukew3/mathgenerator/blob/main/CONTRIBUTING.md) for information about how to contribute.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for information about how to contribute.
 
 ## Table of Contents
 * [Installation](#installation)
@@ -31,9 +32,11 @@ import mathgenerator
 problem, solution = mathgenerator.addition()
 
 #another way to generate an addition problem using genById()
-problem, solution = mathgenerator.genById(0)
+problem, solution = mathgenerator.gen_by_id(0)
 ```
-You may prefer to use `import mathgenerator as mg` and run functions like `mg.addition()` so that you don't have to type as much.
+You may prefer to use `import mathgenerator as mg` and run functions like `mg.addition()` so that you don't have to type as much.<br/>
+You can also use `gen_by_name()` to generate a random question.  If no subject is specified, a random question from the whole set is chosen. If a subject is specified but no topic, a random question from that subject is chosen.<br/>
+Note, if a subject and a topic are both specified, the same type of question will always be returned.
 <!--
 ### Creating a worksheet
 If you wish to create a worksheet, you can use the [worksheetgen](https://github.com/lukew3/worksheetgen) package. Install this with `pip install worksheetgen`. Here is an example of how a worksheet would be generated.
@@ -60,7 +63,7 @@ Problem/solution pairs are generated with either:
 * Pass `format=raw` to return just the raw data for each generator. An array of each variable necessary to the generator is returned.
 * If you don't pass a value to the format kwarg, the generator will return a problem and answer in asciimath format.
 -->
-You can also use `getGenList()` to return a list of all generators included in the library in the format:
+You can also use `get_gen_list()` to return a list of all generators included in the library in the format:
 ```
 [funcname, subjectname]
 ```
