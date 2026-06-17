@@ -25,6 +25,20 @@ def gen_by_id(id, *args, **kwargs):
         print(f"Error finding a question matching id: {id}")
     return (1,1)
 
+def gen_by_id_multichoice(id, choices, *args, **kwargs):
+    if id < len(gen_list):
+        problem, solution =  globals()[gen_list[id][0]](*args, **kwargs)
+        false_solutions = []
+        for x in range(choices-1):
+           fake_solution = solution
+           while fake_solution == solution:
+               _,fake_solution = globals()[gen_list[id][0]](*args, **kwargs)
+           false_solutions.append(fake_solution)
+        return problem, solution, false_solutions
+    else:
+        print(f"Error finding a question matching id: {id}")
+    return (1,1,1)
+
 def gen_by_name(subject='',topic=''):
     # If no subject is specified, a random question from the whole set is chosen
     # If a subject is specified but no topic, a random question from that subject is chosen
