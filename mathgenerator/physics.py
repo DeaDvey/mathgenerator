@@ -18,6 +18,23 @@ def kinetic_energy(max_mass=1000, max_vel=100):
    solution = f'${kinetic_energy} J$'
    return problem, solution
 
+def impulse(max_mass=20, max_vel=100, max_time_ms=999):
+    r"""
+        Using $F \Delta t = I = p - p = mv_1 - mv_2$, work out the force applied
+
+        | Ex. Problem | Ex. Solution |
+        | --- | --- |
+        | An object of mass $19 kg$ collides with a wall and slows down from $64 ms^{-1}$ to rest over a period of $727 ms$, how much force does the object exert on the wall? | $1672.63 N$ |
+    """
+    mass = random.randint(1, max_mass)
+    vel = random.randint(1, max_vel)
+    time_ms = random.randint(1, max_time_ms)
+    force = round((mass * vel) / (time_ms/1000), 2)
+
+    problem = f"An object of mass ${mass} kg$ collides with a wall and slows down from ${vel} ms^{{-1}}$ to rest over a period of ${time_ms} ms$, how much force does the object exert on the wall?"
+    solution = f"${force} N$"
+    return problem, solution
+
 
 # Electricity & Electric Fields
 def potential_dividers(max_vin=50, max_resistance=500):
@@ -139,7 +156,5 @@ def diffraction_grating_wavelength(min_slits_per_mm=100, max_slits_per_mm=500, m
     solution = f"$\\lambda = {wavelength}m = {round(wavelength / 10**-9)}nm$"
 
     return problem, solution
-
-
 
 
