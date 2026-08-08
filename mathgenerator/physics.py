@@ -35,6 +35,20 @@ def impulse(max_mass=20, max_vel=100, max_time_ms=999):
     solution = f"${force} N$"
     return problem, solution
 
+def moment(max_force=100,max_distance=5):
+    r"""Calculate the turning force (moment) from a given force and distance; M = Fd
+
+    | Ex. Problem | Ex. Solution |
+    | --- | --- |
+    | Calculate the turning force (moment) on a lever.  The force is $50 N$ and it is $4 m$ from the pivot. | $200 Nm$ |
+    """
+    force = random.randint(1, max_force)
+    distance = random.randint(1, max_distance)
+    moment = force * distance
+
+    problem = f"Calculate the turning force (moment) on a lever.  The force is ${force} N$ and it is ${distance} m$ from the pivot."
+    solution = f"${moment} Nm$"
+    return problem, solution
 
 # Electricity & Electric Fields
 def potential_dividers(max_vin=50, max_resistance=500):
