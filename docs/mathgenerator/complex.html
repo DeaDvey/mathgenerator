@@ -55,6 +55,9 @@
             <li>
                     <a class="function" href="#cartesian_to_polar">cartesian_to_polar</a>
             </li>
+            <li>
+                    <a class="function" href="#complex_roots">complex_roots</a>
+            </li>
     </ul>
 
 
@@ -94,6 +97,25 @@
 </span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>	<span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Let $z = </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">y</span><span class="si">}{</span><span class="n">complex_unit</span><span class="si">}</span><span class="s2">$, What is the polar representation of $z$&quot;</span>
 </span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>	<span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2"> </span><span class="se">\\</span><span class="s2">angle </span><span class="si">{</span><span class="n">phi</span><span class="si">}</span><span class="s2">$&quot;</span>
 </span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>	<span class="k">return</span> <span class="n">problem</span><span class="p">,</span> <span class="n">solution</span>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="k">def</span><span class="w"> </span><span class="nf">complex_roots</span><span class="p">(</span><span class="n">max_n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">max_r</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">complex_unit</span><span class="o">=</span><span class="s1">&#39;i&#39;</span><span class="p">):</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a><span class="w">	</span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Work out the form of the nth root of z in polar form using De Moivre&#39;s formula</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="sd">		| Ex. Problem | Ex. Solution |</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="sd">		| --- | --- |</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="sd">		| Let $z = 2e^{i(0.5\pi + 2k\pi)}$, what is the form of $\sqrt[3]{z}$? | $z_k = 1.26e^{i(0.17\pi + 0.67k\pi)}, k \in [0,1,2]$ |</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a><span class="sd">	&#39;&#39;&#39;</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>	<span class="n">n</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">max_n</span><span class="p">)</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>	<span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">max_r</span><span class="p">)</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>	<span class="n">phi</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># phi is in terms of pi</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>	<span class="n">r_root</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>	<span class="n">phi_root</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">phi</span><span class="o">/</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>	<span class="n">correction_root</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>	<span class="n">k_range</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>	<span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Let $z = </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">e^</span><span class="se">{{</span><span class="si">{</span><span class="n">complex_unit</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">phi</span><span class="si">}</span><span class="se">\\</span><span class="s2">pi + 2k</span><span class="se">\\</span><span class="s2">pi)</span><span class="se">}}</span><span class="s2">$, what is the form of $</span><span class="se">\\</span><span class="s2">sqrt[</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">]</span><span class="se">{{</span><span class="s2">z</span><span class="se">}}</span><span class="s2">$?&quot;</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>	<span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$z_k = </span><span class="si">{</span><span class="n">r_root</span><span class="si">}</span><span class="s2">e^</span><span class="se">{{</span><span class="si">{</span><span class="n">complex_unit</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">phi_root</span><span class="si">}</span><span class="se">\\</span><span class="s2">pi + </span><span class="si">{</span><span class="n">correction_root</span><span class="si">}</span><span class="s2">k</span><span class="se">\\</span><span class="s2">pi)</span><span class="se">}}</span><span class="s2">, k </span><span class="se">\\</span><span class="s2">in </span><span class="si">{</span><span class="n">k_range</span><span class="si">}</span><span class="s2">$&quot;</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>	<span class="k">return</span> <span class="n">problem</span><span class="p">,</span><span class="n">solution</span>
 </span></pre></div>
 
 
@@ -140,6 +162,58 @@
 <tr>
   <td>Let $z = 15 + 18i$, What is the polar representation of $z$</td>
   <td>$23.43 \angle 0.88$</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+                </section>
+                <section id="complex_roots">
+                            <input id="complex_roots-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">complex_roots</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">max_n</span><span class="o">=</span><span class="mi">6</span>, </span><span class="param"><span class="n">max_r</span><span class="o">=</span><span class="mi">20</span>, </span><span class="param"><span class="n">complex_unit</span><span class="o">=</span><span class="s1">&#39;i&#39;</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="complex_roots-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#complex_roots"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="complex_roots-21"><a href="#complex_roots-21"><span class="linenos">21</span></a><span class="k">def</span><span class="w"> </span><span class="nf">complex_roots</span><span class="p">(</span><span class="n">max_n</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">max_r</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">complex_unit</span><span class="o">=</span><span class="s1">&#39;i&#39;</span><span class="p">):</span>
+</span><span id="complex_roots-22"><a href="#complex_roots-22"><span class="linenos">22</span></a><span class="w">	</span><span class="sa">r</span><span class="sd">&#39;&#39;&#39;Work out the form of the nth root of z in polar form using De Moivre&#39;s formula</span>
+</span><span id="complex_roots-23"><a href="#complex_roots-23"><span class="linenos">23</span></a>
+</span><span id="complex_roots-24"><a href="#complex_roots-24"><span class="linenos">24</span></a><span class="sd">		| Ex. Problem | Ex. Solution |</span>
+</span><span id="complex_roots-25"><a href="#complex_roots-25"><span class="linenos">25</span></a><span class="sd">		| --- | --- |</span>
+</span><span id="complex_roots-26"><a href="#complex_roots-26"><span class="linenos">26</span></a><span class="sd">		| Let $z = 2e^{i(0.5\pi + 2k\pi)}$, what is the form of $\sqrt[3]{z}$? | $z_k = 1.26e^{i(0.17\pi + 0.67k\pi)}, k \in [0,1,2]$ |</span>
+</span><span id="complex_roots-27"><a href="#complex_roots-27"><span class="linenos">27</span></a><span class="sd">	&#39;&#39;&#39;</span>
+</span><span id="complex_roots-28"><a href="#complex_roots-28"><span class="linenos">28</span></a>	<span class="n">n</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">max_n</span><span class="p">)</span>
+</span><span id="complex_roots-29"><a href="#complex_roots-29"><span class="linenos">29</span></a>	<span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">max_r</span><span class="p">)</span>
+</span><span id="complex_roots-30"><a href="#complex_roots-30"><span class="linenos">30</span></a>	<span class="n">phi</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># phi is in terms of pi</span>
+</span><span id="complex_roots-31"><a href="#complex_roots-31"><span class="linenos">31</span></a>	<span class="n">r_root</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="complex_roots-32"><a href="#complex_roots-32"><span class="linenos">32</span></a>	<span class="n">phi_root</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">phi</span><span class="o">/</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="complex_roots-33"><a href="#complex_roots-33"><span class="linenos">33</span></a>	<span class="n">correction_root</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="complex_roots-34"><a href="#complex_roots-34"><span class="linenos">34</span></a>	<span class="n">k_range</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+</span><span id="complex_roots-35"><a href="#complex_roots-35"><span class="linenos">35</span></a>
+</span><span id="complex_roots-36"><a href="#complex_roots-36"><span class="linenos">36</span></a>	<span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Let $z = </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">e^</span><span class="se">{{</span><span class="si">{</span><span class="n">complex_unit</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">phi</span><span class="si">}</span><span class="se">\\</span><span class="s2">pi + 2k</span><span class="se">\\</span><span class="s2">pi)</span><span class="se">}}</span><span class="s2">$, what is the form of $</span><span class="se">\\</span><span class="s2">sqrt[</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">]</span><span class="se">{{</span><span class="s2">z</span><span class="se">}}</span><span class="s2">$?&quot;</span>
+</span><span id="complex_roots-37"><a href="#complex_roots-37"><span class="linenos">37</span></a>	<span class="n">solution</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$z_k = </span><span class="si">{</span><span class="n">r_root</span><span class="si">}</span><span class="s2">e^</span><span class="se">{{</span><span class="si">{</span><span class="n">complex_unit</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="n">phi_root</span><span class="si">}</span><span class="se">\\</span><span class="s2">pi + </span><span class="si">{</span><span class="n">correction_root</span><span class="si">}</span><span class="s2">k</span><span class="se">\\</span><span class="s2">pi)</span><span class="se">}}</span><span class="s2">, k </span><span class="se">\\</span><span class="s2">in </span><span class="si">{</span><span class="n">k_range</span><span class="si">}</span><span class="s2">$&quot;</span>
+</span><span id="complex_roots-38"><a href="#complex_roots-38"><span class="linenos">38</span></a>	<span class="k">return</span> <span class="n">problem</span><span class="p">,</span><span class="n">solution</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Work out the form of the nth root of z in polar form using De Moivre's formula</p>
+
+<table>
+<thead>
+<tr>
+  <th>Ex. Problem</th>
+  <th>Ex. Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Let $z = 2e^{i(0.5\pi + 2k\pi)}$, what is the form of $\sqrt[3]{z}$?</td>
+  <td>$z_k = 1.26e^{i(0.17\pi + 0.67k\pi)}, k \in [0,1,2]$</td>
 </tr>
 </tbody>
 </table>

@@ -142,5 +142,6 @@ gen_list = [
 	("electric_field_strength_two_points", "physics"),
 	("impulse", "physics"),
 	("moment", "physics"),
-	("cartesian_to_polar", "complex")
+	("cartesian_to_polar", "complex"),
+	("complex_roots", "complex")
 ]
