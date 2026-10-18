@@ -10,6 +10,7 @@ from .geometry import *
 from .misc import *
 from .physics import *
 from .statistics import *
+from .complex import *
 
 from ._gen_list import gen_list
 
