@@ -1,7 +1,5 @@
 # mathgenerator
 Fork of <https://github.com/lukew3/mathgenerator><br/>
-Adding more Physics and Computer Science questions<br/>
-As well as randomly generated questions<br/>
 
 A math problem generator, created for the purpose of giving teachers and students the means to easily get access to random math exercises to suit their needs.
 
@@ -67,6 +65,11 @@ You can also use `get_gen_list()` to return a list of all generators included in
 ```
 [funcname, subjectname]
 ```
+
+## What's different with this fork?
+I've been adding quite a few Physics, CS and Engineering questions.  There are two completly new generator classes, Physics and Complex.<br/>
+In addition, I've created `gen_by_name(subject='', topic='')` and `gen_by_id_multichoice(id, choices, *args, **kwargs)` for more complex generation scripts.<br/>
+Questions I'm adding are mainly just things I find useful, but feel free to open a PR for your own questions!
 
 ## Documentation
 Documentation can be found at https://lukew3.github.io/mathgenerator
